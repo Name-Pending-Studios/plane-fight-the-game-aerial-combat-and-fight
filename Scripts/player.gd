@@ -17,10 +17,16 @@ var angularvelocity : float
 var velocity : float
 
 # constants
-var MAX_VELOCITY := 4.5 as float
+var MAX_VELOCITY := 7 as float
 var MAX_ANGULAR_VELOCITY := .15 as float
 var ACCELERATION := .2 as float
 var ANGULAR_ACCELERATION := .03 as float
+var XBORDER := 240
+var YBORDER := 180
+var BULLETCOOLDOWN := 15
+
+# cooldowns
+var bulletcooldown := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,6 +51,7 @@ func _physics_process(delta):
 	states = [] # reset states
 	control() 	# handle input
 	physics()	# manipulate physics
+	cooldowns() # manage cooldowns
 
 func updatesprites():
 	if "driving" in states: 
@@ -99,7 +106,7 @@ func control():
 			angularvelocity = MAX_ANGULAR_VELOCITY
 
 	if Input.is_action_pressed("shoot"):
-		print("shot")
+		shoot()
 	
 
 
@@ -112,5 +119,26 @@ func physics():
 	rotation += angularvelocity
 	angularvelocity*=.75
 
+	# handling borders
+	if position.x > XBORDER: position.x = XBORDER
+	elif position.x < -1*XBORDER: position.x = -1*XBORDER
+	if position.y > YBORDER: position.y = YBORDER
+	elif position.y < -1*YBORDER: position.y = -1*YBORDER
+
+func cooldowns():
+	if bulletcooldown!=0: bulletcooldown-=1
+
 func getvelocityvector():
-	return Vector2(velocity*cos(rotation-PI/2),velocity*sin(rotation-PI/2))
+	return velocity*getforwardvector()
+
+func shoot():
+	if bulletcooldown!=0: return
+	var bullet := Bullet.instantiate() as Node2D
+	add_sibling(bullet)
+	bullet.position = position+getforwardvector()
+	bullet.rotation = rotation
+
+	bulletcooldown=BULLETCOOLDOWN
+
+func getforwardvector():
+	return Vector2(cos(rotation-PI/2),sin(rotation-PI/2))

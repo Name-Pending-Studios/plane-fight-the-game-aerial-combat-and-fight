@@ -1,69 +1,73 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjw5j1ulsyomy"]
+[gd_scene load_steps=8 format=3 uid="uid://bjw5j1ulsyomy"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_5ddh3"]
+[ext_resource type="PackedScene" uid="uid://busxj1aes1aqt" path="res://Assets/playerbullet.tscn" id="2_7dtjv"]
 [ext_resource type="Texture2D" uid="uid://3w7k0eid8e6n" path="res://Graphics/player.png" id="2_yjwn3"]
 [ext_resource type="Texture2D" uid="uid://73152mo8iaqn" path="res://Graphics/mainjet.png" id="3_pejlk"]
 [ext_resource type="Texture2D" uid="uid://bhds3tpgnm554" path="res://Graphics/extrajet.png" id="4_bedi4"]
 [ext_resource type="Texture2D" uid="uid://bxkykmvaw0fxq" path="res://Graphics/torquejet.png" id="5_km6no"]
 [ext_resource type="SpriteFrames" uid="uid://ctmvxrptwcrgq" path="res://Resources/Sprite Frames/playerdeath_sf.tres" id="6_mcl3n"]
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" groups=["player"]]
 position = Vector2(-2, -2)
 rotation = 8.37758
 script = ExtResource("1_5ddh3")
-metadata/_edit_group_ = true
+Bullet = ExtResource("2_7dtjv")
 
-[node name="ship" type="Sprite2D" parent="."]
+[node name="ship" type="Sprite2D" parent="." groups=["player"]]
 z_index = 1
 texture = ExtResource("2_yjwn3")
 
-[node name="mainjet" type="Sprite2D" parent="."]
+[node name="mainjet" type="Sprite2D" parent="." groups=["player"]]
 visible = false
 position = Vector2(-2.38419e-07, 9)
 rotation = -0.817645
 texture = ExtResource("3_pejlk")
 
-[node name="reversejet" type="Sprite2D" parent="."]
+[node name="reversejet" type="Sprite2D" parent="." groups=["player"]]
 visible = false
 position = Vector2(0.169868, 10.2942)
 rotation = -1.63529
 texture = ExtResource("4_bedi4")
 
-[node name="leftjet" type="Sprite2D" parent="."]
+[node name="leftjet" type="Sprite2D" parent="." groups=["player"]]
 visible = false
 position = Vector2(-10.2583, 8.23206)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_km6no")
 
-[node name="rightjet" type="Sprite2D" parent="."]
+[node name="rightjet" type="Sprite2D" parent="." groups=["player"]]
 visible = false
 position = Vector2(10.3301, 7.89231)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_km6no")
 
-[node name="death" type="AnimatedSprite2D" parent="."]
+[node name="death" type="AnimatedSprite2D" parent="." groups=["player"]]
 visible = false
 sprite_frames = ExtResource("6_mcl3n")
 animation = &"new_animation"
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
 position = Vector2(47, 38)
 scale = Vector2(1.85788, 5.72)
+collision_mask = 56
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" groups=["player"]]
 position = Vector2(-25.2977, -6.64336)
 scale = Vector2(0.538249, 0.174825)
 polygon = PackedVector2Array(14, -4.3, 14, -1, 15.6, 5, 5.8, 5, -0.5, 11.4, -3, 10.3, -3, 7.8, -5.8, 5, -15, 5, -15, -2.1, -3, -9.1, -3, -12.1)
 
-[node name="reverseleftjet" type="Sprite2D" parent="."]
+[node name="reverseleftjet" type="Sprite2D" parent="." groups=["player"]]
+visible = false
 position = Vector2(-9.46411, -8.3923)
 rotation = -3.1158
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_km6no")
 
-[node name="reverserightjet" type="Sprite2D" parent="."]
+[node name="reverserightjet" type="Sprite2D" parent="." groups=["player"]]
+visible = false
 position = Vector2(8.8923, -8.59808)
 rotation = 3.13324
 scale = Vector2(0.5, 0.5)

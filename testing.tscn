@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://de26gwajfg81r"]
+
+[ext_resource type="PackedScene" uid="uid://dt5susi68mmo2" path="res://Assets/basicbogey.tscn" id="1_hbyiw"]
+[ext_resource type="PackedScene" uid="uid://bjw5j1ulsyomy" path="res://Assets/player.tscn" id="2_ryc6t"]
+
+[node name="Testing" type="Node2D"]
+position = Vector2(0, 3)
+
+[node name="Basicbogey" parent="." instance=ExtResource("1_hbyiw")]
+position = Vector2(764, 402)
+
+[node name="Player" parent="." instance=ExtResource("2_ryc6t")]
+position = Vector2(141, 0)
+scale = Vector2(1.03768, 0.833459)

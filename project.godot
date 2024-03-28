@@ -62,3 +62,17 @@ click={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(329, 18),"global_position":Vector2(333, 59),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_render/layer_1="planes"
+2d_render/layer_2="player bullets"
+2d_render/layer_3="bogey bullets"
+2d_render/layer_4="player interactables"
+2d_render/layer_5="barriers"
+2d_physics/layer_1="planes"
+2d_physics/layer_2="planes2"
+2d_physics/layer_3="player bullets"
+2d_physics/layer_4="bogey bullets"
+2d_physics/layer_5="player interactables"
+2d_physics/layer_6="barriers"

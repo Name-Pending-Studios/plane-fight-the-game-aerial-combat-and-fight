@@ -1,3 +1,28 @@
-[gd_scene format=3 uid="uid://dt5susi68mmo2"]
+[gd_scene load_steps=5 format=3 uid="uid://dt5susi68mmo2"]
+
+[ext_resource type="Texture2D" uid="uid://dcsmgjte0t7cy" path="res://Graphics/bogey1.png" id="1_7qls8"]
+[ext_resource type="Script" path="res://Scripts/basicbogey.gd" id="1_bisep"]
+[ext_resource type="Texture2D" uid="uid://bxkykmvaw0fxq" path="res://Graphics/torquejet.png" id="2_i6wng"]
+[ext_resource type="PackedScene" uid="uid://cg31ar6non3vi" path="res://Assets/bogeybullet.tscn" id="2_vaxra"]
 
 [node name="Basicbogey" type="Node2D"]
+position = Vector2(208, 160)
+script = ExtResource("1_bisep")
+Bullet = ExtResource("2_vaxra")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("1_7qls8")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+visible = false
+rotation = -2.57765
+polygon = PackedVector2Array(11.4348, -2.49911, 9.29671, -5.87973, 1.77706, -4.67355, -0.361024, -8.05417, -4.81069, -7.6064, -7.12227, -3.778, -4.98418, -0.397383, -10.1419, 6.41425, -8.00378, 9.79487, -0.708017, 6.36386, 1.7407, 8.36481, 6.81163, 5.15768, 6.05323, 2.08769, 11.4348, -2.49911)
+
+[node name="jet" type="Sprite2D" parent="."]
+position = Vector2(0, 9)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_i6wng")

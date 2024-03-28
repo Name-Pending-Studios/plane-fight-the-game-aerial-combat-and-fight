@@ -1,28 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://bss7oqndh5s5v"]
+[gd_scene load_steps=9 format=3 uid="uid://bss7oqndh5s5v"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_dk84r"]
 [ext_resource type="Texture2D" uid="uid://bhsk6w4b48p65" path="res://Graphics/bg.png" id="2_gncma"]
 [ext_resource type="PackedScene" uid="uid://bjw5j1ulsyomy" path="res://Assets/player.tscn" id="2_hc6w3"]
+[ext_resource type="PackedScene" uid="uid://dt5susi68mmo2" path="res://Assets/basicbogey.tscn" id="3_wryl0"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_kbypw"]
-a = Vector2(-3, 360)
-b = Vector2(-3, -360)
+a = Vector2(237, 184)
+b = Vector2(235, -179)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_lwlck"]
-a = Vector2(-3, 357)
-b = Vector2(-3, -361)
+a = Vector2(-246, 176)
+b = Vector2(-246, -184)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_kql8b"]
-a = Vector2(483, -4)
-b = Vector2(-483, -6)
+a = Vector2(464, 18)
+b = Vector2(-14, 17)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_o3ljn"]
-a = Vector2(-485, 714)
-b = Vector2(476, 714)
+a = Vector2(-241, 536)
+b = Vector2(242, 534)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_dk84r")
 Player = ExtResource("2_hc6w3")
+BasicBogey = ExtResource("3_wryl0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -37,28 +39,36 @@ z_index = -1
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_gncma")
 
-[node name="border" type="Node2D" parent="."]
+[node name="border" type="Node2D" parent="." groups=["barrier"]]
 
-[node name="left" type="StaticBody2D" parent="border"]
+[node name="left" type="StaticBody2D" parent="border" groups=["barrier"]]
+collision_layer = 32
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="border/left"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border/left" groups=["barrier"]]
 position = Vector2(-476, -4)
 shape = SubResource("SegmentShape2D_kbypw")
 
-[node name="right" type="StaticBody2D" parent="border"]
+[node name="right" type="StaticBody2D" parent="border" groups=["barrier"]]
+collision_layer = 32
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="border/right"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border/right" groups=["barrier"]]
 position = Vector2(485, 3)
 shape = SubResource("SegmentShape2D_lwlck")
 
-[node name="top" type="StaticBody2D" parent="border"]
+[node name="top" type="StaticBody2D" parent="border" groups=["barrier"]]
+collision_layer = 32
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="border/top"]
-position = Vector2(2, -354)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border/top" groups=["barrier"]]
+position = Vector2(-227, -198)
 shape = SubResource("SegmentShape2D_kql8b")
 
-[node name="bottom" type="StaticBody2D" parent="border"]
+[node name="bottom" type="StaticBody2D" parent="border" groups=["barrier"]]
+collision_layer = 32
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="border/bottom"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border/bottom" groups=["barrier"]]
 position = Vector2(2, -354)
 shape = SubResource("SegmentShape2D_o3ljn")

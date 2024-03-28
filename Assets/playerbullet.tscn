@@ -1,5 +1,25 @@
-[gd_scene format=3 uid="uid://busxj1aes1aqt"]
+[gd_scene load_steps=4 format=3 uid="uid://busxj1aes1aqt"]
 
-[node name="Playerbullet" type="Node2D"]
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_bco8q"]
+[ext_resource type="Texture2D" uid="uid://b6r7bursg6g0f" path="res://Graphics/playerbullet.png" id="1_cmga6"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_32fuj"]
+size = Vector2(3.87893, 10.069)
+
+[node name="Playerbullet" type="Node2D" groups=["playerprojectile"]]
+script = ExtResource("1_bco8q")
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["playerprojectile"]]
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("1_cmga6")
+
+[node name="Area2D" type="Area2D" parent="." groups=["playerprojectile"]]
+scale = Vector2(0.65, 0.65)
+collision_layer = 4
+collision_mask = 34
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["playerprojectile"]]
+position = Vector2(0, -1.83399e-07)
+shape = SubResource("RectangleShape2D_32fuj")
+
+[connection signal="body_entered" from="Area2D" to="." method="__on_body_entered"]
