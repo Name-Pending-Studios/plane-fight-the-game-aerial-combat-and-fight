@@ -1,5 +1,8 @@
 extends Node2D
 
+# public
+@export var damage = 100
+
 # constants
 var speed := 7.5 as float
 

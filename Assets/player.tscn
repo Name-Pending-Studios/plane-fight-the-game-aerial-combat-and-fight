@@ -9,8 +9,6 @@
 [ext_resource type="SpriteFrames" uid="uid://ctmvxrptwcrgq" path="res://Resources/Sprite Frames/playerdeath_sf.tres" id="6_mcl3n"]
 
 [node name="Player" type="Node2D" groups=["player"]]
-position = Vector2(-2, -2)
-rotation = 8.37758
 script = ExtResource("1_5ddh3")
 Bullet = ExtResource("2_7dtjv")
 

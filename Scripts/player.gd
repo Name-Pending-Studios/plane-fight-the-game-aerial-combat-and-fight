@@ -2,6 +2,9 @@ extends Node2D
 
 @export var Bullet : PackedScene
 
+# stats
+var health := 100 as float
+
 # graphics
 var MainJet : Sprite2D
 var ReverseJet : Sprite2D
@@ -17,19 +20,23 @@ var angularvelocity : float
 var velocity : float
 
 # constants
-var MAX_VELOCITY := 7 as float
+var MAX_VELOCITY := 5 as float
 var MAX_ANGULAR_VELOCITY := .15 as float
-var ACCELERATION := .2 as float
+var ACCELERATION := .25 as float
 var ANGULAR_ACCELERATION := .03 as float
 var XBORDER := 240
 var YBORDER := 180
-var BULLETCOOLDOWN := 15
+var BULLET_COOL_DOWN := 12
+var MAX_HEALTH := 100 as float
 
 # cooldowns
 var bulletcooldown := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# signals
+	$Area2D.area_entered.connect(_on_area_entered)
+
 	# graphics
 	MainJet = $mainjet as Sprite2D
 	ReverseJet = $reversejet as Sprite2D
@@ -75,6 +82,10 @@ func updatesprites():
 		LeftJet.visible = false
 		ReverseRightJet.visible = false
 
+func _on_area_entered(area):
+	if area.is_in_group("bogeyprojectile"):
+		health -= area.get_parent().damage
+		print(health)
 
 func control():
 	if Input.is_action_pressed("drive"):
@@ -113,7 +124,7 @@ func control():
 func physics():
 	# position
 	position = position + getvelocityvector()
-	velocity *= .93
+	velocity *= .95
 
 	# rotation
 	rotation += angularvelocity
@@ -138,7 +149,7 @@ func shoot():
 	bullet.position = position+getforwardvector()
 	bullet.rotation = rotation
 
-	bulletcooldown=BULLETCOOLDOWN
+	bulletcooldown=BULLET_COOL_DOWN
 
 func getforwardvector():
 	return Vector2(cos(rotation-PI/2),sin(rotation-PI/2))

@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bss7oqndh5s5v"]
+[gd_scene load_steps=10 format=3 uid="uid://bss7oqndh5s5v"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_dk84r"]
 [ext_resource type="Texture2D" uid="uid://bhsk6w4b48p65" path="res://Graphics/bg.png" id="2_gncma"]
 [ext_resource type="PackedScene" uid="uid://bjw5j1ulsyomy" path="res://Assets/player.tscn" id="2_hc6w3"]
 [ext_resource type="PackedScene" uid="uid://dt5susi68mmo2" path="res://Assets/basicbogey.tscn" id="3_wryl0"]
+[ext_resource type="PackedScene" uid="uid://bk5usril2pfrv" path="res://Assets/bogeyspawner.tscn" id="5_qe81b"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_kbypw"]
 a = Vector2(237, 184)
@@ -72,3 +73,5 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="border/bottom" groups=["barrier"]]
 position = Vector2(2, -354)
 shape = SubResource("SegmentShape2D_o3ljn")
+
+[node name="Bogeyspawner" parent="." instance=ExtResource("5_qe81b")]

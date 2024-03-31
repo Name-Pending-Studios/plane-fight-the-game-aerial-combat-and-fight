@@ -1,0 +1,42 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://cuuoa18dowuqr"]
+
+[ext_resource type="Texture2D" uid="uid://cd557p82ddcum" path="res://Animations/basicbogey/explosion.png" id="1_g647w"]
+[ext_resource type="Texture2D" uid="uid://dcsmgjte0t7cy" path="res://Graphics/bogey1.png" id="1_yopt4"]
+[ext_resource type="Texture2D" uid="uid://lvdsjxes8gdh" path="res://Animations/basicbogey/explosion2.png" id="2_s300c"]
+[ext_resource type="Texture2D" uid="uid://d1ol54cfnw1my" path="res://Animations/basicbogey/smoke.png" id="3_xexkm"]
+[ext_resource type="Texture2D" uid="uid://bnhpr31pkfn5v" path="res://Animations/basicbogey/hit1.png" id="5_sc3tc"]
+[ext_resource type="Texture2D" uid="uid://bpieun4mjuutf" path="res://Animations/basicbogey/hit2.png" id="6_2ucke"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_g647w")
+}, {
+"duration": 0.8,
+"texture": ExtResource("2_s300c")
+}, {
+"duration": 1.8,
+"texture": ExtResource("3_xexkm")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yopt4")
+}, {
+"duration": 0.5,
+"texture": ExtResource("5_sc3tc")
+}, {
+"duration": 1.4,
+"texture": ExtResource("6_2ucke")
+}, {
+"duration": 0.2,
+"texture": ExtResource("5_sc3tc")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}]

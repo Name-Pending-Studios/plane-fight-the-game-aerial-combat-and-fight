@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk5usril2pfrv"]
+
+[ext_resource type="Script" path="res://Scripts/bogeyspawner.gd" id="1_8d6dd"]
+[ext_resource type="PackedScene" uid="uid://dt5susi68mmo2" path="res://Assets/basicbogey.tscn" id="2_xwa74"]
+
+[node name="Bogeyspawner" type="Node2D"]
+script = ExtResource("1_8d6dd")
+BasicBogey = ExtResource("2_xwa74")

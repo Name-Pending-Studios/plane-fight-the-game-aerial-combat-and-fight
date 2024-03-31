@@ -1,28 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt5susi68mmo2"]
+[gd_scene load_steps=6 format=3 uid="uid://dt5susi68mmo2"]
 
 [ext_resource type="Texture2D" uid="uid://dcsmgjte0t7cy" path="res://Graphics/bogey1.png" id="1_7qls8"]
 [ext_resource type="Script" path="res://Scripts/basicbogey.gd" id="1_bisep"]
 [ext_resource type="Texture2D" uid="uid://bxkykmvaw0fxq" path="res://Graphics/torquejet.png" id="2_i6wng"]
 [ext_resource type="PackedScene" uid="uid://cg31ar6non3vi" path="res://Assets/bogeybullet.tscn" id="2_vaxra"]
+[ext_resource type="SpriteFrames" uid="uid://cuuoa18dowuqr" path="res://Resources/Sprite Frames/basicbogeydeath_sf.tres" id="5_k0stf"]
 
-[node name="Basicbogey" type="Node2D"]
+[node name="Basicbogey" type="Node2D" groups=["enemy"]]
 position = Vector2(208, 160)
 script = ExtResource("1_bisep")
 Bullet = ExtResource("2_vaxra")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["enemy"]]
 z_index = 1
 texture = ExtResource("1_7qls8")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 4
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-visible = false
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" groups=["enemy"]]
 rotation = -2.57765
 polygon = PackedVector2Array(11.4348, -2.49911, 9.29671, -5.87973, 1.77706, -4.67355, -0.361024, -8.05417, -4.81069, -7.6064, -7.12227, -3.778, -4.98418, -0.397383, -10.1419, 6.41425, -8.00378, 9.79487, -0.708017, 6.36386, 1.7407, 8.36481, 6.81163, 5.15768, 6.05323, 2.08769, 11.4348, -2.49911)
 
-[node name="jet" type="Sprite2D" parent="."]
+[node name="jet" type="Sprite2D" parent="." groups=["enemy"]]
 position = Vector2(0, 9)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_i6wng")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = ExtResource("5_k0stf")
+animation = &"death"
+frame_progress = 0.0659618
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="anim" to="." method="_on_animation_finished"]
+[connection signal="animation_looped" from="anim" to="." method="_on_animation_looped"]
