@@ -1,7 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://de26gwajfg81r"]
+[gd_scene load_steps=7 format=3 uid="uid://de26gwajfg81r"]
 
 [ext_resource type="PackedScene" uid="uid://dt5susi68mmo2" path="res://Assets/basicbogey.tscn" id="1_hbyiw"]
 [ext_resource type="PackedScene" uid="uid://bjw5j1ulsyomy" path="res://Assets/player.tscn" id="2_ryc6t"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_6j17m"]
+a = Vector2(237, 184)
+b = Vector2(235, -179)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_dnp5y"]
+a = Vector2(-246, 176)
+b = Vector2(-246, -184)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_bxi87"]
+a = Vector2(464, 18)
+b = Vector2(-14, 17)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_i0xe6"]
+a = Vector2(-241, 536)
+b = Vector2(242, 534)
 
 [node name="Testing" type="Node2D"]
 position = Vector2(0, 3)
@@ -12,3 +28,44 @@ position = Vector2(764, 402)
 [node name="Player" parent="." instance=ExtResource("2_ryc6t")]
 position = Vector2(141, 0)
 scale = Vector2(1.03768, 0.833459)
+
+[node name="border" type="Node2D" parent="." groups=["barrier"]]
+
+[node name="left" type="StaticBody2D" parent="border" groups=["barrier"]]
+collision_layer = 32
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border/left" groups=["barrier"]]
+position = Vector2(-476, -4)
+shape = SubResource("SegmentShape2D_6j17m")
+
+[node name="right" type="StaticBody2D" parent="border" groups=["barrier"]]
+collision_layer = 32
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border/right" groups=["barrier"]]
+position = Vector2(485, 3)
+shape = SubResource("SegmentShape2D_dnp5y")
+
+[node name="top" type="StaticBody2D" parent="border" groups=["barrier"]]
+collision_layer = 32
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border/top" groups=["barrier"]]
+position = Vector2(-227, -198)
+shape = SubResource("SegmentShape2D_bxi87")
+
+[node name="bottom" type="StaticBody2D" parent="border" groups=["barrier"]]
+collision_layer = 32
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border/bottom" groups=["barrier"]]
+position = Vector2(2, -354)
+shape = SubResource("SegmentShape2D_i0xe6")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="border"]
+offset_left = -238.0
+offset_top = 184.0
+offset_right = -198.0
+offset_bottom = 224.0
+scale = Vector2(11.84, -9.08)

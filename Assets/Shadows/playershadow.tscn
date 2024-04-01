@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvc2flo7kgr6i"]
+
+[ext_resource type="Script" path="res://Scripts/shadow.gd" id="1_dk1ks"]
+[ext_resource type="Texture2D" uid="uid://c6ha23ywojxqt" path="res://Graphics/playershadow.png" id="2_dtu2e"]
+
+[node name="Playershadow" type="Node2D"]
+visible = false
+script = ExtResource("1_dk1ks")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_dtu2e")

@@ -7,20 +7,20 @@
 [ext_resource type="PackedScene" uid="uid://bk5usril2pfrv" path="res://Assets/bogeyspawner.tscn" id="5_qe81b"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_kbypw"]
-a = Vector2(237, 184)
-b = Vector2(235, -179)
+a = Vector2(236, 192)
+b = Vector2(234, -202)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_lwlck"]
-a = Vector2(-246, 176)
-b = Vector2(-246, -184)
+a = Vector2(-242, 191)
+b = Vector2(-245, -202)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_kql8b"]
-a = Vector2(464, 18)
-b = Vector2(-14, 17)
+a = Vector2(482, 16)
+b = Vector2(-28, 17)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_o3ljn"]
-a = Vector2(-241, 536)
-b = Vector2(242, 534)
+a = Vector2(-261, 535)
+b = Vector2(257, 535)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_dk84r")
@@ -44,34 +44,34 @@ texture = ExtResource("2_gncma")
 
 [node name="left" type="StaticBody2D" parent="border" groups=["barrier"]]
 collision_layer = 32
-collision_mask = 0
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="border/left" groups=["barrier"]]
-position = Vector2(-476, -4)
+position = Vector2(-487, 0)
 shape = SubResource("SegmentShape2D_kbypw")
 
 [node name="right" type="StaticBody2D" parent="border" groups=["barrier"]]
 collision_layer = 32
-collision_mask = 0
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="border/right" groups=["barrier"]]
-position = Vector2(485, 3)
+position = Vector2(499, 3)
 shape = SubResource("SegmentShape2D_lwlck")
 
 [node name="top" type="StaticBody2D" parent="border" groups=["barrier"]]
 collision_layer = 32
-collision_mask = 0
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="border/top" groups=["barrier"]]
-position = Vector2(-227, -198)
+position = Vector2(-227, -214)
 shape = SubResource("SegmentShape2D_kql8b")
 
 [node name="bottom" type="StaticBody2D" parent="border" groups=["barrier"]]
 collision_layer = 32
-collision_mask = 0
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="border/bottom" groups=["barrier"]]
-position = Vector2(2, -354)
+position = Vector2(0, -345)
 shape = SubResource("SegmentShape2D_o3ljn")
 
 [node name="Bogeyspawner" parent="." instance=ExtResource("5_qe81b")]

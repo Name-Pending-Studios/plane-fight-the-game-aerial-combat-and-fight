@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://dt5susi68mmo2"]
+[gd_scene load_steps=7 format=3 uid="uid://dt5susi68mmo2"]
 
 [ext_resource type="Texture2D" uid="uid://dcsmgjte0t7cy" path="res://Graphics/bogey1.png" id="1_7qls8"]
 [ext_resource type="Script" path="res://Scripts/basicbogey.gd" id="1_bisep"]
 [ext_resource type="Texture2D" uid="uid://bxkykmvaw0fxq" path="res://Graphics/torquejet.png" id="2_i6wng"]
 [ext_resource type="PackedScene" uid="uid://cg31ar6non3vi" path="res://Assets/bogeybullet.tscn" id="2_vaxra"]
+[ext_resource type="PackedScene" uid="uid://cqk0nok5asy2t" path="res://Assets/Shadows/basicbogeyshadow.tscn" id="3_vs8qf"]
 [ext_resource type="SpriteFrames" uid="uid://cuuoa18dowuqr" path="res://Resources/Sprite Frames/basicbogeydeath_sf.tres" id="5_k0stf"]
 
 [node name="Basicbogey" type="Node2D" groups=["enemy"]]
 position = Vector2(208, 160)
 script = ExtResource("1_bisep")
 Bullet = ExtResource("2_vaxra")
+Shadow = ExtResource("3_vs8qf")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." groups=["enemy"]]

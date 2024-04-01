@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var Bullet : PackedScene
+@export var Shadow : PackedScene
 
 # stats
 var health := 100 as float
@@ -45,6 +46,9 @@ func _ready():
 	ReverseLeftJet = $reverseleftjet as Sprite2D
 	ReverseRightJet = $reverserightjet as Sprite2D
 	Death = $death as AnimatedSprite2D
+	var s = Shadow.instantiate()
+	s.object = self
+	add_sibling(s)
 	velocity = 0.
 	angularvelocity = 0.
 	states=[]

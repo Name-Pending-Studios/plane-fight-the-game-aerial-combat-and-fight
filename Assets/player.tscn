@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjw5j1ulsyomy"]
+[gd_scene load_steps=9 format=3 uid="uid://bjw5j1ulsyomy"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_5ddh3"]
 [ext_resource type="PackedScene" uid="uid://busxj1aes1aqt" path="res://Assets/playerbullet.tscn" id="2_7dtjv"]
 [ext_resource type="Texture2D" uid="uid://3w7k0eid8e6n" path="res://Graphics/player.png" id="2_yjwn3"]
 [ext_resource type="Texture2D" uid="uid://73152mo8iaqn" path="res://Graphics/mainjet.png" id="3_pejlk"]
+[ext_resource type="PackedScene" uid="uid://cvc2flo7kgr6i" path="res://Assets/Shadows/playershadow.tscn" id="3_sgmwv"]
 [ext_resource type="Texture2D" uid="uid://bhds3tpgnm554" path="res://Graphics/extrajet.png" id="4_bedi4"]
 [ext_resource type="Texture2D" uid="uid://bxkykmvaw0fxq" path="res://Graphics/torquejet.png" id="5_km6no"]
 [ext_resource type="SpriteFrames" uid="uid://ctmvxrptwcrgq" path="res://Resources/Sprite Frames/playerdeath_sf.tres" id="6_mcl3n"]
@@ -11,6 +12,7 @@
 [node name="Player" type="Node2D" groups=["player"]]
 script = ExtResource("1_5ddh3")
 Bullet = ExtResource("2_7dtjv")
+Shadow = ExtResource("3_sgmwv")
 
 [node name="ship" type="Sprite2D" parent="." groups=["player"]]
 z_index = 1

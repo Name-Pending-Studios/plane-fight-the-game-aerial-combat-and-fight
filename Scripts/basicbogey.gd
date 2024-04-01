@@ -2,6 +2,7 @@ extends Node2D
 
 # exports and constants
 @export var Bullet : PackedScene
+@export var Shadow : PackedScene
 @export var MAX_SPEED := 5 as float
 @export var MAX_BULLET_COOL_DOWN := 150 as int
 @export var MIN_BULLET_COOL_DOWN := 50 as int
@@ -17,7 +18,7 @@ var angularvelocity := 0 as float
 var speed := 0 as float
 
 # stats
-var health := 100 as float
+@export var health := 100 as float
 
 # graphics
 var states : Array
@@ -28,6 +29,9 @@ var bulletcooldown := MAX_BULLET_COOL_DOWN*1.5 as int
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	states = []
+	var s = Shadow.instantiate()
+	s.object = self
+	add_sibling(s)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
