@@ -8,7 +8,7 @@ extends Node2D
 @export var MIN_BULLET_COOL_DOWN := 50 as int
 
 var MAX_ANGULAR_VELOCITY := .18 as float
-var ANGULAR_ACCELERATION := .03 as float
+var ANGULAR_ACCELERATION := .01 as float
 var ACCELERATION := .2 as float
 var X_BORDER := 240
 var Y_BORDER := 180
@@ -61,6 +61,7 @@ func control():
 func physics():
 	rotation+=angularvelocity
 	position+=speed*getforwardvector()
+	angularvelocity*=.99
 
 	# handling borders
 	if position.x > X_BORDER: position.x = X_BORDER

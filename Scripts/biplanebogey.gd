@@ -60,6 +60,7 @@ func control():
 func physics():
 	rotation+=angularvelocity
 	position+=speed*getforwardvector()
+	angularvelocity*=.95
 
 	# handling borders
 	if position.x > X_BORDER: position.x = X_BORDER
