@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb3wrsqfhl1oj"]
+
+[ext_resource type="Script" path="res://Scripts/shadow.gd" id="1_8pj13"]
+[ext_resource type="Texture2D" uid="uid://oyr4yoehefyf" path="res://Graphics/bogey2shadow.png" id="2_77su2"]
+
+[node name="Basicbogeyshadow" type="Node2D"]
+script = ExtResource("1_8pj13")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_77su2")

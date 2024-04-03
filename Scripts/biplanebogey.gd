@@ -3,11 +3,11 @@ extends Node2D
 # exports and constants
 @export var Bullet : PackedScene
 @export var Shadow : PackedScene
-@export var MAX_SPEED := (randi()%300)/100. + 1.5 as float
-@export var MAX_BULLET_COOL_DOWN := (randi() % (250 - 150)) + 150 as int
+@export var MAX_SPEED := (randi()%300)/100. + 2 as float
+@export var MAX_BULLET_COOL_DOWN := (randi() % (250 - 150)) + 200 as int as int
 @export var MIN_BULLET_COOL_DOWN := 50 as int
 
-var MAX_ANGULAR_VELOCITY := .18 as float
+var MAX_ANGULAR_VELOCITY := .09 as float
 var ANGULAR_ACCELERATION := .03 as float
 var ACCELERATION := .2 as float
 var X_BORDER := 240
@@ -18,13 +18,14 @@ var angularvelocity := 0 as float
 var speed := 0 as float
 
 # stats
-@export var health := 100 as float
+@export var health := 200 as float
 
 # graphics
 var states : Array
 
 # cooldowns
 var bulletcooldown := MAX_BULLET_COOL_DOWN*1.5 as int
+var hitcooldown := 0 as int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,12 +34,10 @@ func _ready():
 	s.object = self
 	add_sibling(s)
 
-	
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if "dying" not in states: states = []
+	pass
 
 func _physics_process(delta):
 	if "dying" in states: 
@@ -72,6 +71,8 @@ func cooldowns():
 	if bulletcooldown <= 0:
 		shoot()
 	else: bulletcooldown-=1
+	if hitcooldown <= 0: modulate.v = 1
+	else: hitcooldown -= 1
 
 func desireddirection(): # 0 is counterclockwise 1 is clockwise
 	var player = get_node("/root/Main/Player")
@@ -95,34 +96,19 @@ func _on_area_entered(area:Area2D):
 
 func hit():
 	if "dying" in states: return
-	$Sprite2D.visible = false
-	$anim.visible = true
-	$anim.play("hit")
-
-func _on_animation_finished():
-	print("hi")
-	"""if "dying" in states:
-		queue_free()
 	if health <= 0 and "dying" not in states:
 		$jet.visible = false
+		$Sprite2D.visible = false
+		$anim.visible = true
 		$anim.play("death")
+		$Area2D.queue_free()
 		states.append("dying")
-	else:
-		$Sprite2D.visible = true
-		$anim.visible = false"""
+	modulate.v = 15
+	hitcooldown = 10
 
 func _on_animation_looped():
 	if "dying" in states:
 		queue_free()
-	if health <= 0 and "dying" not in states:
-		$jet.visible = false
-		$anim.stop()
-		$anim.play("death")
-		$Area2D.queue_free()
-		states.append("dying")
-	else:
-		$Sprite2D.visible = true
-		$anim.visible = false
 
 func shoot():
 	var bullet := Bullet.instantiate() as Node2D
@@ -131,4 +117,9 @@ func shoot():
 	bullet.position = position+getforwardvector()
 	bullet.rotation = rotation
 
-	bulletcooldown = (randi() % (MAX_BULLET_COOL_DOWN - MIN_BULLET_COOL_DOWN)) + MIN_BULLET_COOL_DOWN
+	if "shooting" in states: 
+		bulletcooldown = (randi() % (MAX_BULLET_COOL_DOWN - MIN_BULLET_COOL_DOWN)) + MIN_BULLET_COOL_DOWN
+		states.erase("shooting")
+	else:
+		bulletcooldown = 20
+		states.append("shooting")

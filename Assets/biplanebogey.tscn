@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqkiwt47amk3j"]
+
+[ext_resource type="Texture2D" uid="uid://dugok8p2jve0a" path="res://Graphics/bogey2.png" id="1_4y0eu"]
+[ext_resource type="Script" path="res://Scripts/biplanebogey.gd" id="1_30r8e"]
+[ext_resource type="PackedScene" uid="uid://cg31ar6non3vi" path="res://Assets/bogeybullet.tscn" id="2_jivia"]
+[ext_resource type="PackedScene" uid="uid://bb3wrsqfhl1oj" path="res://Assets/Shadows/biplanebogeyshadow.tscn" id="3_ipmqa"]
+[ext_resource type="Texture2D" uid="uid://bxkykmvaw0fxq" path="res://Graphics/torquejet.png" id="5_stcq0"]
+[ext_resource type="SpriteFrames" uid="uid://cciyhu2xi7kgc" path="res://Resources/Sprite Frames/death_sf.tres" id="6_r5677"]
+
+[node name="Biplanebogey" type="Node2D" groups=["enemy"]]
+position = Vector2(208, 160)
+script = ExtResource("1_30r8e")
+Bullet = ExtResource("2_jivia")
+Shadow = ExtResource("3_ipmqa")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["enemy"]]
+z_index = 1
+texture = ExtResource("1_4y0eu")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" groups=["enemy"]]
+rotation = -2.57765
+polygon = PackedVector2Array(13.1251, -3.56818, 10.987, -6.94879, 2.8461, -2.98325, -0.361024, -8.05417, -4.81069, -7.6064, -7.12227, -3.778, -3.91516, 1.29293, -10.1419, 6.41425, -8.00378, 9.79487, -0.708017, 6.36386, 1.7407, 8.36481, 6.81163, 5.15768, 6.05323, 2.08769, 13.1251, -3.56818)
+
+[node name="jet" type="Sprite2D" parent="." groups=["enemy"]]
+position = Vector2(0, 11)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_stcq0")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = ExtResource("6_r5677")
+animation = &"death"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="anim" to="." method="_on_animation_finished"]
+[connection signal="animation_looped" from="anim" to="." method="_on_animation_looped"]

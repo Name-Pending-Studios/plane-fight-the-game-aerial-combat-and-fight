@@ -32,6 +32,7 @@ var MAX_HEALTH := 100 as float
 
 # cooldowns
 var bulletcooldown := 0
+var hitcooldown := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -59,7 +60,7 @@ func _process(delta):
 	updatesprites()
 
 func _physics_process(delta):
-	states = [] # reset states
+	for s in ["driving","reversing","left","right"]: if s in states: states.erase(s)
 	control() 	# handle input
 	physics()	# manipulate physics
 	cooldowns() # manage cooldowns
@@ -89,7 +90,7 @@ func updatesprites():
 func _on_area_entered(area):
 	if area.is_in_group("bogeyprojectile"):
 		health -= area.get_parent().damage
-		print(health)
+		hit()
 
 func control():
 	if Input.is_action_pressed("drive"):
@@ -142,6 +143,8 @@ func physics():
 
 func cooldowns():
 	if bulletcooldown!=0: bulletcooldown-=1
+	if hitcooldown>=0: hitcooldown-=1
+	else: modulate.v = 1
 
 func getvelocityvector():
 	return velocity*getforwardvector()
@@ -157,3 +160,8 @@ func shoot():
 
 func getforwardvector():
 	return Vector2(cos(rotation-PI/2),sin(rotation-PI/2))
+
+func hit():
+	hitcooldown = 10
+	modulate.v = 15
+	print(health)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bss7oqndh5s5v"]
+[gd_scene load_steps=11 format=3 uid="uid://bss7oqndh5s5v"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_dk84r"]
 [ext_resource type="Texture2D" uid="uid://bhsk6w4b48p65" path="res://Graphics/bg.png" id="2_gncma"]
 [ext_resource type="PackedScene" uid="uid://bjw5j1ulsyomy" path="res://Assets/player.tscn" id="2_hc6w3"]
 [ext_resource type="PackedScene" uid="uid://dt5susi68mmo2" path="res://Assets/basicbogey.tscn" id="3_wryl0"]
 [ext_resource type="PackedScene" uid="uid://bk5usril2pfrv" path="res://Assets/bogeyspawner.tscn" id="5_qe81b"]
+[ext_resource type="PackedScene" uid="uid://bqkiwt47amk3j" path="res://Assets/biplanebogey.tscn" id="6_1pnf8"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_kbypw"]
 a = Vector2(236, 192)
@@ -75,3 +76,5 @@ position = Vector2(0, -345)
 shape = SubResource("SegmentShape2D_o3ljn")
 
 [node name="Bogeyspawner" parent="." instance=ExtResource("5_qe81b")]
+BiplaneBogey = ExtResource("6_1pnf8")
+STARTING_DIFFICULTY = 5
